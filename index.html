@@ -45,7 +45,7 @@
             border-radius: 5px;
             word-break: break-all;
             margin-top: 10px;
-            min-height: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -62,20 +62,36 @@
         .icon-button {
             background: none;
             border: none;
-            font-size: 20px;
             cursor: pointer;
-            padding: 8px;
+            padding: 15px;
             border-radius: 5px;
             transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            width: 50px;
+        }
+        .icon-button svg {
+            width: 20px;
+            height: 20px;
         }
         .icon-button:hover {
             background-color: #e9ecef;
         }
+        .refresh-icon {
+            background-color: #007bff;
+            color: white;
+        }
         .refresh-icon:hover {
-            background-color: #cce5ff;
+            background-color: #0056b3;
+        }
+        .copy-icon {
+            background-color: #28a745;
+            color: white;
         }
         .copy-icon:hover {
-            background-color: #d4edda;
+            background-color: #1e7e34;
         }
         .checkbox-container {
             display: flex;
@@ -153,8 +169,19 @@
         </div>
         <div class="password-container">
             <div id="password" class="password-display">Click the button to generate a password</div>
-            <button class="icon-button refresh-icon" onclick="generatePassword()" title="Generate new password">🔄</button>
-            <button id="copyButton" class="icon-button copy-icon" onclick="copyToClipboard()" title="Copy to clipboard" style="display: none;">📋</button>
+            <button class="icon-button refresh-icon" onclick="generatePassword()" title="Generate new password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="m3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+            </button>
+            <button id="copyButton" class="icon-button copy-icon" onclick="copyToClipboard()" title="Copy to clipboard" style="display: none;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+                    <path d="m4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+                </svg>
+            </button>
         </div>
         <div class="strength-indicator">
             <div class="strength-bar">
@@ -264,10 +291,10 @@
             const password = document.getElementById('password').textContent;
             navigator.clipboard.writeText(password).then(function() {
                 const button = document.getElementById('copyButton');
-                const originalIcon = button.textContent;
-                button.textContent = '✅';
+                const originalIcon = button.innerHTML;
+                button.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
                 setTimeout(function() {
-                    button.textContent = originalIcon;
+                    button.innerHTML = originalIcon;
                 }, 2000);
             });
         }
